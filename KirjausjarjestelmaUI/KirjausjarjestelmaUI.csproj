@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-KirjausjarjestelmaUI-8A7C1865-1B8E-428C-BB08-6D509F032C6A</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="efpt.config.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\OpenLayers.debug.js" />
+    <None Include="wwwroot\OpenLayers.js" />
+    <None Include="wwwroot\OpenLayers.light.debug.js" />
+    <None Include="wwwroot\OpenLayers.light.js" />
+    <None Include="wwwroot\OpenLayers.mobile.debug.js" />
+    <None Include="wwwroot\OpenLayers.mobile.js" />
+    <None Include="wwwroot\theme\default\google.css" />
+    <None Include="wwwroot\theme\default\google.tidy.css" />
+    <None Include="wwwroot\theme\default\ie6-style.css" />
+    <None Include="wwwroot\theme\default\ie6-style.tidy.css" />
+    <None Include="wwwroot\theme\default\img\add_point_off.png" />
+    <None Include="wwwroot\theme\default\img\add_point_on.png" />
+    <None Include="wwwroot\theme\default\img\blank.gif" />
+    <None Include="wwwroot\theme\default\img\close.gif" />
+    <None Include="wwwroot\theme\default\img\drag-rectangle-off.png" />
+    <None Include="wwwroot\theme\default\img\drag-rectangle-on.png" />
+    <None Include="wwwroot\theme\default\img\draw_line_off.png" />
+    <None Include="wwwroot\theme\default\img\draw_line_on.png" />
+    <None Include="wwwroot\theme\default\img\draw_point_off.png" />
+    <None Include="wwwroot\theme\default\img\draw_point_on.png" />
+    <None Include="wwwroot\theme\default\img\draw_polygon_off.png" />
+    <None Include="wwwroot\theme\default\img\draw_polygon_on.png" />
+    <None Include="wwwroot\theme\default\img\editing_tool_bar.png" />
+    <None Include="wwwroot\theme\default\img\move_feature_off.png" />
+    <None Include="wwwroot\theme\default\img\move_feature_on.png" />
+    <None Include="wwwroot\theme\default\img\navigation_history.png" />
+    <None Include="wwwroot\theme\default\img\overview_replacement.gif" />
+    <None Include="wwwroot\theme\default\img\pan-panel-NOALPHA.png" />
+    <None Include="wwwroot\theme\default\img\pan-panel.png" />
+    <None Include="wwwroot\theme\default\img\panning-hand-off.png" />
+    <None Include="wwwroot\theme\default\img\panning-hand-on.png" />
+    <None Include="wwwroot\theme\default\img\pan_off.png" />
+    <None Include="wwwroot\theme\default\img\pan_on.png" />
+    <None Include="wwwroot\theme\default\img\remove_point_off.png" />
+    <None Include="wwwroot\theme\default\img\remove_point_on.png" />
+    <None Include="wwwroot\theme\default\img\ruler.png" />
+    <None Include="wwwroot\theme\default\img\save_features_off.png" />
+    <None Include="wwwroot\theme\default\img\save_features_on.png" />
+    <None Include="wwwroot\theme\default\img\view_next_off.png" />
+    <None Include="wwwroot\theme\default\img\view_next_on.png" />
+    <None Include="wwwroot\theme\default\img\view_previous_off.png" />
+    <None Include="wwwroot\theme\default\img\view_previous_on.png" />
+    <None Include="wwwroot\theme\default\img\zoom-panel-NOALPHA.png" />
+    <None Include="wwwroot\theme\default\img\zoom-panel.png" />
+    <None Include="wwwroot\theme\default\style.css" />
+    <None Include="wwwroot\theme\default\style.mobile.css" />
+    <None Include="wwwroot\theme\default\style.mobile.tidy.css" />
+    <None Include="wwwroot\theme\default\style.tidy.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10" />
+  </ItemGroup>
+
+</Project>

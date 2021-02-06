@@ -1,0 +1,57 @@
+﻿{
+   "ContextClassName": "BlazorappDevContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Data\\BlazorApp",
+   "ProjectRootNamespace": "KirjausjarjestelmaDB",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[AspNetRoleClaims]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserClaims]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserLogins]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUsers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserTokens]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[WeatherForecast]",
+         "ObjectType": 0
+      }
+   ],
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNodaTime": false,
+   "UseSpatial": false
+}
