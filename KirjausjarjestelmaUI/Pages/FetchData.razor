@@ -2,49 +2,52 @@
 @using KirjausjarjestelmaUI.Data
 @using KirjausjarjestelmaDB.Data.BlazorApp
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@inherits OwningComponentBase<IWeatherForecastService>
-<h1>Weather forecast</h1>
+@inject IJSRuntime JSRuntime
+@inherits OwningComponentBase<IFishRecordsService>
+<h1>Kirjaukset</h1>
 <AuthorizeView>
     <Authorized>
-        <h4>Hello, @context.User.Identity.Name!</h4>
-        @if (forecasts == null)
+        <h4>Tervetuloa, @context.User.Identity.Name!</h4>
+        @if (fishRecords == null)
         {
             <p><em>Loading...</em></p>
         }
         else
         {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.Value.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                    <td>
-                        <button class="btn btn-primary"
-                                @onclick="(() => EditForecast(forecast))">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Kalalaji</th>
+                        <th>Paino</th>
+                        <th>Pituus</th>
+                        <th>Päivämäärä</th>
+                        <th>Kirjaaja</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var fishRecord in fishRecords)
+                    {
+                        <tr>
+                            <td>@fishRecord.Type</td>
+                            <td>@fishRecord.Weight kg</td>
+                            <td>@fishRecord.Length cm</td>
+                            <td>@fishRecord.Created.ToString()</td>
+                            <td>@fishRecord.UserName</td>
+                            <td>
+                                <button class="btn btn-primary"
+                                        @onclick="(() => EditForecast(fishRecord))">
+                                    Muokkaa
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
             <p>
                 <button class="btn btn-primary"
                         @onclick="AddNewForecast">
-                    Add New Forecast
+                    Lisää uusi
                 </button>
             </p>
             @if (ShowPopup)
@@ -60,21 +63,26 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <p>Kalalaji:</p>
                                 <input class="form-control" type="text"
-                                       placeholder="Celsius forecast"
-                                       @bind="objWeatherForecast.TemperatureC" />
-                                <input class="form-control" type="text"
-                                       placeholder="Fahrenheit forecast"
-                                       @bind="objWeatherForecast.TemperatureF" />
-                                <input class="form-control" type="text"
-                                       placeholder="Summary"
-                                       @bind="objWeatherForecast.Summary" />
+                                       placeholder="Kalalaji"
+                                       @bind="objFishRecord.Type" />
+                                <p>Paino:</p>
+
+                                <input class="form-control" type="number"
+                                       placeholder="kg"
+                                       @bind="objFishRecord.Weight" />
+                                <p>Pituus:</p>
+
+                                <input class="form-control" type="number"
+                                       placeholder="cm"
+                                       @bind="objFishRecord.Length" />
                                 <br />
                                 <button class="btn btn-primary"
                                         @onclick="SaveForecast">
                                     Save
                                 </button>
-                                @if (objWeatherForecast.Id > 0)
+                                @if (objFishRecord.Id != null)
                                 {
                                     <button class="btn btn-primary"
                                             @onclick="DeleteForecast">
@@ -85,10 +93,11 @@
                         </div>
                     </div>
                 </div>
+
             }
         }
     </Authorized>
     <NotAuthorized>
-        <p>You're not signed in.</p>
+        <p>Kirjaudu sisään!</p>
     </NotAuthorized>
 </AuthorizeView>

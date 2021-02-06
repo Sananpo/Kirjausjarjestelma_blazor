@@ -44,6 +44,7 @@ namespace KirjausjarjestelmaUI
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+            services.AddScoped<IFishRecordsService, FishRecordsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

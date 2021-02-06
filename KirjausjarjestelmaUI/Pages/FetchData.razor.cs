@@ -1,6 +1,8 @@
 ﻿using KirjausjarjestelmaDB.Data.BlazorApp;
+using KirjausjarjestelmaUI.Data.BlazorApp;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,85 +11,69 @@ namespace KirjausjarjestelmaUI.Pages
 {
     public partial class FetchData
     {
-        // AuthenticationState is available as a CascadingParameter
         [CascadingParameter]
         private Task<AuthenticationState> authenticationStateTask { get; set; }
-        List<WeatherForecast> forecasts;
+        List<FishRecords> fishRecords;
+        public bool NewRecord { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
-            // Get the current user
             var user = (await authenticationStateTask).User;
-            // Get the forecasts for the current user
-            // We access WeatherForecastService using @Service
-            forecasts = await @Service.GetForecastAsync(user.Identity.Name);
+            fishRecords = await @Service.GetUserFishRecordsAsync(user.Identity.Name);
         }
-        WeatherForecast objWeatherForecast = new WeatherForecast();
+        FishRecords objFishRecord = new FishRecords();
         bool ShowPopup = false;
         void ClosePopup()
         {
-            // Close the Popup
             ShowPopup = false;
         }
         void AddNewForecast()
         {
-            // Make new forecast
-            objWeatherForecast = new WeatherForecast();
-            // Set Id to 0 so we know it is a new record
-            objWeatherForecast.Id = 0;
-            // Open the Popup
+            objFishRecord = new FishRecords();
+            objFishRecord.Id = Guid.NewGuid();
+            NewRecord = true;
             ShowPopup = true;
         }
         async Task SaveForecast()
         {
-            // Close the Popup
             ShowPopup = false;
-            // Get the current user
             var user = (await authenticationStateTask).User;
-            // A new forecast will have the Id set to 0
-            if (objWeatherForecast.Id == 0)
+            if (NewRecord == true)
             {
-                // Create new forecast
-                WeatherForecast objNewWeatherForecast = new WeatherForecast();
-                objNewWeatherForecast.Date = System.DateTime.Now;
-                objNewWeatherForecast.Summary = objWeatherForecast.Summary;
-                objNewWeatherForecast.TemperatureC =
-                Convert.ToInt32(objWeatherForecast.TemperatureC);
-                objNewWeatherForecast.TemperatureF =
-                Convert.ToInt32(objWeatherForecast.TemperatureF);
-                objNewWeatherForecast.UserName = user.Identity.Name;
-                // Save the result
+                FishRecords objNewFishRecord = new FishRecords();
+                objNewFishRecord.Created = System.DateTime.Now;
+                objNewFishRecord.Latitude = objFishRecord.Latitude;
+                objNewFishRecord.Longitude = objFishRecord.Longitude;
+                objNewFishRecord.Type = objFishRecord.Type;
+                objNewFishRecord.Weight = objFishRecord.Weight;
+                objNewFishRecord.Length = objFishRecord.Length;
+                objNewFishRecord.UserName = user.Identity.Name;
+
                 var result =
-                @Service.CreateForecastAsync(objNewWeatherForecast);
+                @Service.CreateFishRecordsAsync(objNewFishRecord);
+                NewRecord = false;
             }
             else
             {
-                // This is an update
                 var result =
-                @Service.UpdateForecastAsync(objWeatherForecast);
+                @Service.UpdateFishRecordsAsync(objFishRecord);
             }
-            // Get the forecasts for the current user
-            forecasts =
-            await @Service.GetForecastAsync(user.Identity.Name);
+
+            fishRecords =
+            await @Service.GetUserFishRecordsAsync(user.Identity.Name);
         }
-        void EditForecast(WeatherForecast weatherForecast)
+        void EditForecast(FishRecords fishRecords)
         {
-            // Set the selected forecast
-            // as the current forecast
-            objWeatherForecast = weatherForecast;
-            // Open the Popup
+            objFishRecord = fishRecords;
+
             ShowPopup = true;
         }
         async Task DeleteForecast()
         {
-            // Close the Popup
             ShowPopup = false;
-            // Get the current user
             var user = (await authenticationStateTask).User;
-            // Delete the forecast
-            var result = @Service.DeleteForecastAsync(objWeatherForecast);
-            // Get the forecasts for the current user
-            forecasts =
-            await @Service.GetForecastAsync(user.Identity.Name);
+            var result = @Service.DeleteFishRecordsAsync(objFishRecord.Id);
+            fishRecords =
+            await @Service.GetUserFishRecordsAsync(user.Identity.Name);
         }
     }
 }
