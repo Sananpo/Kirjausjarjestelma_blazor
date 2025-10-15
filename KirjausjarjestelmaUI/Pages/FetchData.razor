@@ -5,9 +5,6 @@
 @inject IJSRuntime JSRuntime
 @inherits OwningComponentBase<IFishRecordsService>
 <h1>Kirjaukset</h1>
-<AuthorizeView>
-    <Authorized>
-        <h4>Tervetuloa, @context.User.Identity.Name!</h4>
         @if (fishRecords == null)
         {
             <p><em>Loading...</em></p>
@@ -56,13 +53,23 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title">Edit Forecast</h3>
+                                <h3 class="modal-title">Edit Fish Records</h3>
                                 <button type="button" class="close"
                                         @onclick="ClosePopup">
                                     <span aria-hidden="true">X</span>
                                 </button>
                             </div>
+                            <div id="Map" style="height:500px"></div>
+
                             <div class="modal-body">
+                                <p>Lon:</p>
+                                <input class="form-control" type="number"
+                                       placeholder=@objFishRecord.Longitude
+                                       @bind="objFishRecord.Longitude" />
+                                <p>Lat:</p>
+                                <input class="form-control" type="number"
+                                       placeholder=@objFishRecord.Latitude
+                                       @bind="objFishRecord.Latitude" />
                                 <p>Kalalaji:</p>
                                 <input class="form-control" type="text"
                                        placeholder="Kalalaji"
@@ -96,8 +103,4 @@
 
             }
         }
-    </Authorized>
-    <NotAuthorized>
-        <p>Kirjaudu sisään!</p>
-    </NotAuthorized>
-</AuthorizeView>
+

@@ -26,12 +26,16 @@ namespace KirjausjarjestelmaUI.Pages
         {
             ShowPopup = false;
         }
-        void AddNewForecast()
+        async Task AddNewForecast()
         {
             objFishRecord = new FishRecords();
             objFishRecord.Id = Guid.NewGuid();
             NewRecord = true;
             ShowPopup = true;
+            await Task.Delay(1000);
+
+            var dotNetReference = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeVoidAsync("init", dotNetReference);
         }
         async Task SaveForecast()
         {
@@ -74,6 +78,27 @@ namespace KirjausjarjestelmaUI.Pages
             var result = @Service.DeleteFishRecordsAsync(objFishRecord.Id);
             fishRecords =
             await @Service.GetUserFishRecordsAsync(user.Identity.Name);
+        }
+
+        public string LonCoord { get; set; }
+        public string LatCoord { get; set; }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                var dotNetReference = DotNetObjectReference.Create(this);
+                await JSRuntime.InvokeVoidAsync("init", dotNetReference);
+            }
+        }
+
+        [JSInvokable("SetCoords")]
+        public async Task SetCoords(string Lon, string Lat)
+        {
+            objFishRecord.Longitude = Lon;
+            objFishRecord.Latitude = Lat;
+            await JSRuntime.InvokeVoidAsync("addMarker", Lon, Lat);
+            StateHasChanged();
         }
     }
 }

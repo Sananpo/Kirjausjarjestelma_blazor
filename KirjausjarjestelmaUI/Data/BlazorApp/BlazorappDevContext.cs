@@ -27,9 +27,9 @@ namespace KirjausjarjestelmaDB.Data.BlazorApp
 
                 entity.Property(e => e.Id).HasColumnType("uniqueidentifier");
 
-                entity.Property(e => e.Latitude).HasColumnType("float");
+                entity.Property(e => e.Latitude).HasColumnType("nvarchar(max)");
 
-                entity.Property(e => e.Longitude).HasColumnType("float");
+                entity.Property(e => e.Longitude).HasColumnType("nvarchar(max)");
 
                 entity.Property(e => e.Length).HasColumnType("float");
 

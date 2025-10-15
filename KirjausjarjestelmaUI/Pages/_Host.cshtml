@@ -59,9 +59,7 @@
         function init(dotNetObject) {
             dotnetObj = dotNetObject;
 
-            map = new OpenLayers.Map("Map", {
-            }
-            );
+            map = new OpenLayers.Map("Map", {});
             var mapnik = new OpenLayers.Layer.OSM("MAP");
 
             map.addLayer(mapnik);
@@ -77,8 +75,13 @@
         function addMarker(lon, lat) {
             console.log(map)
             console.log(lon, lat)
-            var newPos = new OpenLayers.LonLat(lon, lat).transform(fromProjection, toProjection);       
-            markers.addMarker(new OpenLayers.Marker(newPos));
+            // First, clear all existing markers
+            markers.clearMarkers();
+            // Then, transform the coordinates
+            var newPos = new OpenLayers.LonLat(lon, lat).transform(fromProjection, toProjection);
+            // Create and add the new marker
+            var newMarker = new OpenLayers.Marker(newPos);
+            markers.addMarker(newMarker);
         }
 
         OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {

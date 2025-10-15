@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20250111121908_typechange.cs" />
+    <Compile Remove="Data\Migrations\20250111121908_typechange.Designer.cs" />
+    <Compile Remove="Migrations\20250111122127_typechange.cs" />
+    <Compile Remove="Migrations\20250111122127_typechange.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="efpt.config.json" />
   </ItemGroup>
 

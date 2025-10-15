@@ -1,31 +1,11 @@
 ﻿@page "/"
-@inject IJSRuntime JSRuntime
+
 
 <h1>Kirjausjärjestelmä</h1>
 
 <title>OpenLayers Simplest Example</title>
-<div id="Map" style="height:500px"></div>
-<div>Lon: @LonCoord Lat: @LatCoord</div>
+
 
 @code{
-    public string LonCoord { get; set; }
-    public string LatCoord { get; set; }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            var dotNetReference = DotNetObjectReference.Create(this);
-            await JSRuntime.InvokeVoidAsync("init", dotNetReference);
-        }
-    }
-
-    [JSInvokable("SetCoords")]
-    public async Task SetCoords(string Lon, string Lat)
-    {
-        LonCoord = Lon;
-        LatCoord = Lat;
-        await JSRuntime.InvokeVoidAsync("addMarker", Lon, Lat);
-        StateHasChanged();
-    }
+    
 }

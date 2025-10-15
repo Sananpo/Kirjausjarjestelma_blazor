@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace KirjausjarjestelmaUI.Data.BlazorApp
 {
@@ -12,8 +9,8 @@ namespace KirjausjarjestelmaUI.Data.BlazorApp
         public float Weight { get; set; }
         public float Length { get; set; }
         public DateTime Created { get; set; }
-        public float Longitude { get; set; }
-        public float Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
         public string UserName { get; set; }
     }
 }
