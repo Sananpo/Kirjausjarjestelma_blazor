@@ -3,5 +3,9 @@
 - Merkitse saadut kalat
 - Merkitse istutukset
 - Hae tietoa saaduista kaloista ja käytetyistä pyydyksistä
-- Villen kanssa hk openissa
+
+# Kehitysympäristön ajaminen
+
+- Cloonaa repo
+- Avaa vs ja paina f5
   
